@@ -9,14 +9,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(int id, String name, ArrayList<Ingredients> ingredients, ArrayList<Steps> steps, int servings, String image) {
-        this.id = id;
-        this.name = name;
-        this.ingredients = ingredients;
-        this.steps = steps;
-        this.servings = servings;
-        this.image = image;
-    }
+
 
     @SerializedName("id")
     private int id;
