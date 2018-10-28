@@ -54,6 +54,15 @@ import retrofit2.Response;
         Toolbar toolbar = findViewById(R.id.toolebar_activity_maim);
         setSupportActionBar(toolbar);
 
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setHasFixedSize(true);
+
+        LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(
+                mRecyclerView.getContext(),
+                R.anim.layout_full_down);
+        mRecyclerView.setLayoutAnimation(animationController);
+
+
 
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -68,6 +77,8 @@ import retrofit2.Response;
                 mAdapter.setmRecipeList(mRecipesList);
                 Log.d(TAG, "onCreate: mRecipesList"+mRecipesList.toString());
                 mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.scheduleLayoutAnimation();
+                mAdapter.notifyDataSetChanged();
 
 
 
@@ -82,14 +93,6 @@ import retrofit2.Response;
 
 
 
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setHasFixedSize(true);
-
-//     LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(
-//             mRecyclerView.getContext(),
-//             R.anim.layout_full_down);
-//        mRecyclerView.setLayoutAnimation(animationController);
 
 
     }
