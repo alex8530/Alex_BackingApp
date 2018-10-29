@@ -1,7 +1,7 @@
-package com.example.alex.alex_backingapp;
+package com.example.alex.alex_backingapp.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
+import com.example.alex.alex_backingapp.R;
 import com.example.alex.alex_backingapp.adapter.MainAdapter;
 import com.example.alex.alex_backingapp.listener.MyItemClickListener;
 import com.example.alex.alex_backingapp.model.Recipe;
@@ -34,12 +35,12 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link RecipeFragment.OnFragmentInteractionListener} interface
+ * {@link RecipeFragment.OnRecipeFragmentInteractionListener} interface
  * to handle interaction events.
  */
 public class RecipeFragment extends Fragment implements MyItemClickListener {
 
-    private OnFragmentInteractionListener mListener;
+    private OnRecipeFragmentInteractionListener mListener;
     ApiInterface mApiInterface;
     private static final String TAG = "RecipeFragment";
     Context mContext;
@@ -70,7 +71,7 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
          mContext=getContext();
         ButterKnife.bind(this,root);
 
-        //        toolbar
+        // toolbar
         Toolbar toolbar = root.findViewById(R.id.toolebar_fragment_recipe);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
@@ -104,6 +105,7 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
                 mRecyclerView.scheduleLayoutAnimation();
                 mAdapter.notifyDataSetChanged();
 
+                // todo add the list to view model for avoid the recreate !!!
 
 
             }
@@ -120,18 +122,11 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnRecipeFragmentInteractionListener) {
+            mListener = (OnRecipeFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -147,11 +142,16 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
     @Override
     public void onClickItemObject(int position) {
 
+        //this is well trigger when click on item by adtapter
+        mListener.onFragmentInteraction(mRecipesList.get(position));
+
     }
 
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface OnRecipeFragmentInteractionListener {
+
+        void onFragmentInteraction( Recipe recipe);
     }
+
+
 }

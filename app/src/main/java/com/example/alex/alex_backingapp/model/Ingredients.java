@@ -1,8 +1,11 @@
 package com.example.alex.alex_backingapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-class Ingredients {
+public class Ingredients implements Parcelable {
 
     @SerializedName("quantity")
     private double quantity;
@@ -55,4 +58,34 @@ class Ingredients {
                 ", ingredient='" + ingredient + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(this.quantity);
+        dest.writeString(this.measure);
+        dest.writeString(this.ingredient);
+    }
+
+    protected Ingredients(Parcel in) {
+        this.quantity = in.readDouble();
+        this.measure = in.readString();
+        this.ingredient = in.readString();
+    }
+
+    public static final Parcelable.Creator<Ingredients> CREATOR = new Parcelable.Creator<Ingredients>() {
+        @Override
+        public Ingredients createFromParcel(Parcel source) {
+            return new Ingredients(source);
+        }
+
+        @Override
+        public Ingredients[] newArray(int size) {
+            return new Ingredients[size];
+        }
+    };
 }
