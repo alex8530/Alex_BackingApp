@@ -1,6 +1,7 @@
  package com.example.alex.alex_backingapp;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -22,84 +23,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
- public class MainActivity extends AppCompatActivity implements MyItemClickListener {
-     ApiInterface mApiInterface;
+ public class MainActivity extends AppCompatActivity implements  RecipeFragment.OnFragmentInteractionListener {
+
      private static final String TAG = "MainActivity";
-     Context mContext;
-
-
-     @BindView(R.id.rv_activity_main)
-     RecyclerView mRecyclerView;
-
-     List<Recipe> mRecipesList;
-
-     MainAdapter mAdapter;
-     MyItemClickListener myItemClickListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mContext=this;
-        ButterKnife.bind(this);
-        myItemClickListener=this;
-
-//        toolbar
-        Toolbar toolbar = findViewById(R.id.toolebar_activity_maim);
-        setSupportActionBar(toolbar);
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setHasFixedSize(true);
-
-        LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(
-                mRecyclerView.getContext(),
-                R.anim.layout_full_down);
-        mRecyclerView.setLayoutAnimation(animationController);
-
-
-
-
-        mApiInterface = ApiClient.getClient().create(ApiInterface.class);
-        Call<ArrayList<Recipe>> arrayListCall = mApiInterface.getRecipeList();
-        arrayListCall.enqueue(new Callback<ArrayList<Recipe>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Recipe>> call, Response<ArrayList<Recipe>> response) {
-
-                mRecipesList=response.body();
-                mAdapter = new MainAdapter(mContext);
-                mAdapter.setmMyItemClickListener(myItemClickListener);
-                mAdapter.setmRecipeList(mRecipesList);
-                Log.d(TAG, "onCreate: mRecipesList"+mRecipesList.toString());
-                mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.scheduleLayoutAnimation();
-                mAdapter.notifyDataSetChanged();
-
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Recipe>> call, Throwable t) {
-
-            }
-        });
-
-
-
-
-
 
     }
 
 
+
      @Override
-     public void onClickItemObject(int position) {
-         Log.d(TAG, "onClickItemObject: ");
+     public void onFragmentInteraction(Uri uri) {
+
      }
  }
