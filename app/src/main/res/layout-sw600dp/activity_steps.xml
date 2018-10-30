@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-         tools:context=".ui.StepsActivity" />
+         tools:context=".ui.activities.StepsActivity" />
     <View
         android:layout_width="1dp"
         android:id="@+id/viewForCheck"
@@ -21,7 +21,7 @@
         android:layout_width="0dp"
          android:layout_height="match_parent"
         android:layout_weight="2"
-        tools:context=".ui.StepsActivity" />
+        tools:context=".ui.activities.StepsActivity" />
 
 
 

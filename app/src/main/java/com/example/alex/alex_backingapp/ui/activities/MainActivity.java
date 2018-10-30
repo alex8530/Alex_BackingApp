@@ -1,12 +1,12 @@
- package com.example.alex.alex_backingapp.ui;
+ package com.example.alex.alex_backingapp.ui.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.alex.alex_backingapp.R;
 import com.example.alex.alex_backingapp.model.Recipe;
+import com.example.alex.alex_backingapp.ui.fragments.RecipeFragment;
 
  public class MainActivity extends AppCompatActivity implements RecipeFragment.OnRecipeFragmentInteractionListener {
 

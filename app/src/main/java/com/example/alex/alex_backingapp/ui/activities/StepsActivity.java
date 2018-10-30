@@ -1,14 +1,15 @@
-package com.example.alex.alex_backingapp.ui;
+package com.example.alex.alex_backingapp.ui.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.alex.alex_backingapp.R;
 import com.example.alex.alex_backingapp.model.Recipe;
 import com.example.alex.alex_backingapp.model.Step;
+import com.example.alex.alex_backingapp.ui.fragments.DetailsStepFragment;
+import com.example.alex.alex_backingapp.ui.fragments.Steps_ingredients_Fragment;
 
 import java.util.ArrayList;
 

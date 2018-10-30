@@ -1,4 +1,4 @@
-package com.example.alex.alex_backingapp.ui;
+package com.example.alex.alex_backingapp.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;

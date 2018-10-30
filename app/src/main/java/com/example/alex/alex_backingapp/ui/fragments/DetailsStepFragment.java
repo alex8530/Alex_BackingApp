@@ -1,4 +1,4 @@
-package com.example.alex.alex_backingapp.ui;
+package com.example.alex.alex_backingapp.ui.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
