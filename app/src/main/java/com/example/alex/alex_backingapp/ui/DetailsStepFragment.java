@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ import static android.view.View.GONE;
 
 
 public class DetailsStepFragment extends Fragment {
-
+    private static final String TAG = "DetailsStepFragment";
     private OnDetailsStepFragmentInteractionListener mListener;
     Context mContext;
 
@@ -76,6 +77,8 @@ public class DetailsStepFragment extends Fragment {
     int position;
     int sizeOfList;
 
+    long positionOfExoplayer ;
+
     public void setBundleFromActivity(Bundle bundleFromActivity) {
         this.bundleFromActivity = bundleFromActivity;
     }
@@ -86,7 +89,7 @@ public class DetailsStepFragment extends Fragment {
     public DetailsStepFragment() {
         // Required empty public constructor
     }
-
+    String videoUrl="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -97,26 +100,32 @@ public class DetailsStepFragment extends Fragment {
 
         if(savedInstanceState == null)
         {
+            Log.d(TAG, "onCreateView: savedInstanceState == null");
 
             //this is the first time the the fragment created
             position=bundleFromActivity.getInt("position");
             sizeOfList=bundleFromActivity.getInt("SizeOfList");
             steps=bundleFromActivity.getParcelableArrayList("steps");
+            positionOfExoplayer=0;//because this is first time
 
         }else {
+            Log.d(TAG, "onCreateView: savedInstanceState =! null");
             //check if there is reotate and get save value !!
             position=savedInstanceState.getInt("position");
             sizeOfList=savedInstanceState.getInt("SizeOfList");
             steps=savedInstanceState.getParcelableArrayList("steps");
+            positionOfExoplayer=savedInstanceState.getLong("positionOfExoplayer");
+            Log.d(TAG, "onCreateView: savedInstanceState =! null positionOfExoplayer: "+positionOfExoplayer);
+
         }
 
         update();
-        if (mStep!=null){
-            //when rotate the screen will  crash !!
-            //use need use view holder
-
-
-        }
+//        if (mStep!=null){
+//            //when rotate the screen will  crash !!
+//            //use need use view holder
+//
+//
+//        }
 
 
 
@@ -169,7 +178,7 @@ public class DetailsStepFragment extends Fragment {
             imageView.setVisibility(GONE);
             tv_empty.setVisibility(View.VISIBLE);
         } else if (!steps.get(position).getVideoURL().isEmpty()) {
-            String videoUrl = steps.get(position).getVideoURL();
+              videoUrl = steps.get(position).getVideoURL();
             tv_empty.setVisibility(View.GONE);
             imageView.setVisibility(GONE);
             mExoPlayerView.setVisibility(View.VISIBLE);
@@ -186,9 +195,9 @@ public class DetailsStepFragment extends Fragment {
         }
 
 
-      hideSystemUi();
+//      hideSystemUi();
 
-        String description =mStep.getDescription();
+        String description =steps.get(position).getDescription();
         tv_description.setText(description);
         tv_currentStep.setText((position + 1) + "/" + sizeOfList);
 
@@ -205,9 +214,13 @@ public class DetailsStepFragment extends Fragment {
 
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(mContext, trackSelector, loadControl);
 
-            mExoPlayer.getPlayWhenReady();
+//            mExoPlayer.getPlayWhenReady();
+            mExoPlayer.seekTo(positionOfExoplayer);
 
+            Log.d(TAG, "initializePlayer:  mExoPlayer.seekTo "+positionOfExoplayer);
             mExoPlayerView.setPlayer(mExoPlayer);
+
+
 
 
             String userAgent = Util.getUserAgent(mContext, "alex_backingapp");
@@ -217,9 +230,9 @@ public class DetailsStepFragment extends Fragment {
                     new DefaultExtractorsFactory(), null, null);
 
             //create playlist
-            mExoPlayer.prepare( mediaSource);
+            mExoPlayer.prepare( mediaSource,false,false);
 
-            mExoPlayer.setPlayWhenReady(true);
+            mExoPlayer.setPlayWhenReady(false);
 
 
 
@@ -247,6 +260,9 @@ public class DetailsStepFragment extends Fragment {
         outState.putInt("position",position);
         outState.putInt("SizeOfList",sizeOfList);
         outState.putParcelableArrayList("steps",steps);
+        outState.putLong("positionOfExoplayer",mExoPlayer.getCurrentPosition());
+
+        Log.d(TAG, "onSaveInstanceState: positionOfExoplayer : "+mExoPlayer.getCurrentPosition());
 
     }
 
@@ -277,7 +293,7 @@ public class DetailsStepFragment extends Fragment {
     private void releasePlayer() {
 
         if (mExoPlayer!=null){
-
+//            positionOfExoplayer=mExoPlayer.getCurrentPosition();
             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
@@ -311,5 +327,37 @@ public class DetailsStepFragment extends Fragment {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.SDK_INT > 23) {
+            initializePlayer(Uri.parse(videoUrl));
+        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        hideSystemUi();
+        if ((Util.SDK_INT <= 23 || mExoPlayer == null)) {
+            initializePlayer(Uri.parse(videoUrl));
+        }
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (Util.SDK_INT <= 23) {
+            releasePlayer();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (Util.SDK_INT > 23) {
+            releasePlayer();
+        }
+    }
 }
