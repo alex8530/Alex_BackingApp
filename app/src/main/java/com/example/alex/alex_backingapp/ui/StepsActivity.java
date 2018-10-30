@@ -40,13 +40,10 @@ private static final String TAG = "StepsActivity";
         // Only create new fragments when there is no previously saved state
         if(savedInstanceState == null){
 
-            Steps_ingredients_Fragment fragment= new Steps_ingredients_Fragment();
-            fragment.setmRecipe(mRecipe);
+//            Steps_ingredients_Fragment fragment= new Steps_ingredients_Fragment();
+            //this is the better way for creating instance fragment
+            Steps_ingredients_Fragment fragment = Steps_ingredients_Fragment.newInstance(mRecipe);
             getSupportFragmentManager().beginTransaction().add(R.id.framelayout_steps_ingred,fragment).commit();
-
-
-
-
 
         }
 
@@ -66,6 +63,8 @@ private static final String TAG = "StepsActivity";
         bundle.putInt("position",position);
         bundle.putInt("SizeOfList",steps.size());
         bundle.putParcelableArrayList("steps",steps );
+
+        //Note , this is the other way
         detailsStepFragment.setBundleFromActivity(bundle);
 
         getSupportFragmentManager().beginTransaction()

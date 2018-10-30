@@ -44,20 +44,13 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
 
     MyItemClickListener myItemClickListener;
 
-    public void setmRecipe(Recipe mRecipe) {
-        this.mRecipe = mRecipe;
-    }
-
-    Recipe mRecipe;
-
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private Recipe mRecipe;
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+
 
     private OnSteps_ingredients_FragmentInteractionListener mListener;
 
@@ -70,15 +63,14 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment Steps_ingredients_Fragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static Steps_ingredients_Fragment newInstance(String param1, String param2) {
+    // i do the same thing in the second fragment when i create method setBundleFromActivity to pass data from activity to fragment
+    //but this is the bessssst way for passing data ,and also i do not need onSaveInstanceState..
+    public static Steps_ingredients_Fragment newInstance(Recipe param1) {
         Steps_ingredients_Fragment fragment = new Steps_ingredients_Fragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(ARG_PARAM1,param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -87,9 +79,7 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+            mRecipe = getArguments().getParcelable(ARG_PARAM1);        }
     }
 
     @Override
@@ -110,6 +100,7 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
 
         mRecyleViewStepFragment.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyleViewStepFragment.setHasFixedSize(true);
+
 
         LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(
                 mRecyleViewStepFragment.getContext(),

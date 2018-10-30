@@ -214,7 +214,6 @@ public class DetailsStepFragment extends Fragment {
 
             mExoPlayer = ExoPlayerFactory.newSimpleInstance(mContext, trackSelector, loadControl);
 
-//            mExoPlayer.getPlayWhenReady();
             mExoPlayer.seekTo(positionOfExoplayer);
 
             Log.d(TAG, "initializePlayer:  mExoPlayer.seekTo "+positionOfExoplayer);
