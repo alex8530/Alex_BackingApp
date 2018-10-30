@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -42,8 +43,10 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
 
     private OnRecipeFragmentInteractionListener mListener;
     ApiInterface mApiInterface;
-    private static final String TAG = "RecipeFragment";
+    private static final String TAG = "RecipeFragmentttttt";
     Context mContext;
+
+    boolean isTabelet=false;
 
 
     @BindView(R.id.rv_fragment_recipe)
@@ -71,13 +74,38 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
          mContext=getContext();
         ButterKnife.bind(this,root);
 
+
+
+        if (this.getTag().equals("tablet")){
+
+
+             //yes is  tablet
+            isTabelet=true;
+            Log.d(TAG, "onCreateView: isTabelet=true; ");
+        }else {
+            //phone
+            isTabelet=false;
+            Log.d(TAG, "onCreateView: isTabelet=false; ");
+
+        }
+
         // toolbar
         Toolbar toolbar = root.findViewById(R.id.toolebar_fragment_recipe);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
 
-         myItemClickListener=this;
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        myItemClickListener=this;
+        if (!isTabelet){
+//            phone
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+            Log.d(TAG, "onCreateView:phone ");
+
+        }else {
+//            tablet
+            mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,3));
+            Log.d(TAG, "onCreateView:tablet ");
+
+        }
         mRecyclerView.setHasFixedSize(true);
 
         LayoutAnimationController animationController = AnimationUtils.loadLayoutAnimation(
@@ -100,8 +128,7 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
                 mAdapter = new MainAdapter(mContext);
                 mAdapter.setmMyItemClickListener(myItemClickListener);
                 mAdapter.setmRecipeList(mRecipesList);
-                Log.d(TAG, "onCreate: mRecipesList"+mRecipesList.toString());
-                mRecyclerView.setAdapter(mAdapter);
+                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.scheduleLayoutAnimation();
                 mAdapter.notifyDataSetChanged();
 

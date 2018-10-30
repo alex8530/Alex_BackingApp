@@ -73,8 +73,7 @@ public class DetailsStepFragment extends Fragment {
 
 
     private ArrayList<Step> steps;
-    private Step mStep;
-    int position;
+     int position;
     int sizeOfList;
 
     long positionOfExoplayer ;
@@ -103,10 +102,13 @@ public class DetailsStepFragment extends Fragment {
             Log.d(TAG, "onCreateView: savedInstanceState == null");
 
             //this is the first time the the fragment created
-            position=bundleFromActivity.getInt("position");
-            sizeOfList=bundleFromActivity.getInt("SizeOfList");
-            steps=bundleFromActivity.getParcelableArrayList("steps");
-            positionOfExoplayer=0;//because this is first time
+            if (bundleFromActivity !=null){
+                position=bundleFromActivity.getInt("position");
+                sizeOfList=bundleFromActivity.getInt("SizeOfList");
+                steps=bundleFromActivity.getParcelableArrayList("steps");
+                positionOfExoplayer=0;//because this is first time
+            }
+
 
         }else {
             Log.d(TAG, "onCreateView: savedInstanceState =! null");
@@ -115,7 +117,7 @@ public class DetailsStepFragment extends Fragment {
             sizeOfList=savedInstanceState.getInt("SizeOfList");
             steps=savedInstanceState.getParcelableArrayList("steps");
             positionOfExoplayer=savedInstanceState.getLong("positionOfExoplayer");
-            Log.d(TAG, "onCreateView: savedInstanceState =! null positionOfExoplayer: "+positionOfExoplayer);
+
 
         }
 
@@ -272,9 +274,6 @@ public class DetailsStepFragment extends Fragment {
         mListener = null;
     }
 
-    public void setmStep(Step mStep) {
-        this.mStep = mStep;
-    }
 
 
     public interface OnDetailsStepFragmentInteractionListener {

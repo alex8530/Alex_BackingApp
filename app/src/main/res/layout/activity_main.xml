@@ -4,5 +4,6 @@
     android:id="@+id/recipe_list_fragment"
     android:name="com.example.alex.alex_backingapp.ui.RecipeFragment"
     android:layout_width="match_parent"
+    android:tag="phone"
     android:layout_height="match_parent" />
 

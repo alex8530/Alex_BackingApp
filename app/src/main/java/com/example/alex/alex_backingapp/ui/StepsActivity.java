@@ -3,6 +3,7 @@ package com.example.alex.alex_backingapp.ui;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.alex.alex_backingapp.R;
@@ -14,10 +15,11 @@ import java.util.ArrayList;
 public class StepsActivity extends AppCompatActivity
         implements Steps_ingredients_Fragment.OnSteps_ingredients_FragmentInteractionListener,
         DetailsStepFragment.OnDetailsStepFragmentInteractionListener {
-//this  activity contian two fragment ,(steps and ingredients) ,,, and (deltails steps)
+//in Tablet mode ,this  activity contian two fragment ,(steps and ingredients) ,,, and (deltails steps)
 private static final String TAG = "StepsActivity";
 
     Recipe mRecipe;
+    boolean isTablet=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,25 +27,30 @@ private static final String TAG = "StepsActivity";
 
 
         if (getIntent().hasExtra("Recipe") && getIntent().getParcelableExtra("Recipe")!=null){
-            Log.d(TAG, "onCreate: ");
-            mRecipe=getIntent().getParcelableExtra("Recipe");
+             mRecipe=getIntent().getParcelableExtra("Recipe");
 
-            Log.d(TAG, "onCreata : "+mRecipe.getName());
-            Toast.makeText(this, ""+mRecipe.getName(), Toast.LENGTH_SHORT).show();
-        }else {
+          }else {
             Log.d(TAG, "onCreate: there is Some problem in getting recpie intent");
         }
 
+        View viewForCheck= findViewById(R.id.viewForCheck);
+
+        if (viewForCheck!=null){
+            isTablet=true;
+            Log.d(TAG, "onCreate: isTablet=true; ");
+        }
 
 
 
         // Only create new fragments when there is no previously saved state
         if(savedInstanceState == null){
 
-//            Steps_ingredients_Fragment fragment= new Steps_ingredients_Fragment();
-            //this is the better way for creating instance fragment
-            Steps_ingredients_Fragment fragment = Steps_ingredients_Fragment.newInstance(mRecipe);
-            getSupportFragmentManager().beginTransaction().add(R.id.framelayout_steps_ingred,fragment).commit();
+
+            //  Steps_ingredients_Fragment fragment= new Steps_ingredients_Fragment();
+                 //this is the better way for creating instance fragment
+                 Steps_ingredients_Fragment fragment = Steps_ingredients_Fragment.newInstance(mRecipe);
+                 getSupportFragmentManager().beginTransaction().add(R.id.framelayout_steps_ingred,fragment).commit();
+
 
         }
 
@@ -56,7 +63,6 @@ private static final String TAG = "StepsActivity";
 
         DetailsStepFragment detailsStepFragment= new DetailsStepFragment();
          //we can put data as extra , but i will put it as methods !
-        detailsStepFragment.setmStep(steps.get(position));
 
         //sent the index
         Bundle bundle= new Bundle();
@@ -67,9 +73,20 @@ private static final String TAG = "StepsActivity";
         //Note , this is the other way
         detailsStepFragment.setBundleFromActivity(bundle);
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.framelayout_steps_ingred, detailsStepFragment)
-                .commit();
+        if (isTablet){
+            Log.d(TAG, "onFragmentInteraction: isTablet");
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.framelayout_steps_details, detailsStepFragment)
+                    .commit();
+        }else {
+            Log.d(TAG, "onFragmentInteraction: !isTablet");
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.framelayout_steps_ingred, detailsStepFragment)
+                    .commit();
+        }
+
+
 //
     }
 

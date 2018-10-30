@@ -53,7 +53,7 @@ public class SetpAdapter extends RecyclerView.Adapter<SetpAdapter.StepViewHolder
     @Override
     public void onBindViewHolder(StepViewHolder holder, int position) {
 
-        holder.tv_step_item_shortDescription.setText(mStepList.get(position).getShortDescription());
+        holder.tv_step_item_shortDescription.setText(position+1+" - "+mStepList.get(position).getShortDescription());
     }
 
     @Override
