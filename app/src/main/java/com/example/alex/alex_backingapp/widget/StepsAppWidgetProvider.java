@@ -1,4 +1,4 @@
-package com.example.alex.alex_backingapp;
+package com.example.alex.alex_backingapp.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.example.alex.alex_backingapp.R;
 import com.example.alex.alex_backingapp.model.Ingredients;
 
 import java.util.ArrayList;

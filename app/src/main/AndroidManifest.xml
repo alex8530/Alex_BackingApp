@@ -19,9 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.StepsActivity" />
+        <activity android:name=".ui.activities.StepsActivity"
+            android:parentActivityName=".ui.activities.MainActivity"/>
 
-        <receiver android:name=".StepsAppWidgetProvider">
+        <receiver android:name=".widget.StepsAppWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -31,7 +32,7 @@
                 android:resource="@xml/steps_app_widget_info" />
         </receiver>
 
-        <service android:name=".StepsService" />
+        <service android:name=".widget.StepsService" />
 
     </application>
 

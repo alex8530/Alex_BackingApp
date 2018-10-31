@@ -1,8 +1,10 @@
 package com.example.alex.alex_backingapp.ui.activities;
 
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.alex.alex_backingapp.R;
@@ -95,4 +97,8 @@ private static final String TAG = "StepsActivity";
     public void setCurrnt(int position) {
 
     }
+
+
+
+
 }

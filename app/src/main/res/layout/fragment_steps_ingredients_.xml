@@ -8,6 +8,10 @@
     android:layout_height="wrap_content"
     tools:context=".ui.fragments.Steps_ingredients_Fragment">
 
+    <include
+        android:id="@+id/toolebar_fragment_steps_ingredients"
+        layout="@layout/appbar_layout" />
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

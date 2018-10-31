@@ -3,9 +3,13 @@ package com.example.alex.alex_backingapp.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -90,6 +94,13 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
         ButterKnife.bind(this,root);
         myItemClickListener=this;
 
+
+        // toolbar
+        Toolbar toolbar = root.findViewById(R.id.toolebar_fragment_steps_ingredients);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()). getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         StringBuilder s =new StringBuilder();
 //todo
         if (mRecipe==null) {
@@ -148,6 +159,15 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
     public interface OnSteps_ingredients_FragmentInteractionListener {
          void onFragmentInteraction(ArrayList<Step> steps, int position );
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(getActivity());
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
