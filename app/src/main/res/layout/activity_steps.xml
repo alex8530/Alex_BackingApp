@@ -20,6 +20,5 @@
         android:layout_height="match_parent"
         android:id="@+id/framelayout_steps_ingred">
 
-
     </FrameLayout>
 </LinearLayout>

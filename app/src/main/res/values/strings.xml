@@ -2,6 +2,11 @@
     <string name="app_name">Alex_BackingApp</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="test">this is \n sdfdsf \n sdfsdf \nsdfdfdsf\nsdfgfdg\n</string>
+    <string name="test">this is \n this is\n this is \this is\this is\n</string>
     <string name="appwidget_text">EXAMPLEa</string>
+    <string name="there_is_no_attached_image_or_video">There is no attached image or video</string>
+    <string name="intro">intro</string>
+    <string name="recipe_name">Recipe Name</string>
+    <string name="_10">10</string>
+    <string name="ingredient">Ingredient</string>
 </resources>

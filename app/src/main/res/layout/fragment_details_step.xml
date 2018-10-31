@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="There is no attached image or video"
+                android:text="@string/there_is_no_attached_image_or_video"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:padding="16dp"
@@ -58,7 +58,8 @@
                 android:freezesText="true"
                 android:gravity="center_horizontal"
                 android:padding="16dp"
-                android:text="intro"
+                android:text="@string/intro"
+                android:textColor="@color/colorPrimary"
                 android:textSize="17sp" />
 
             <RelativeLayout
@@ -70,7 +71,7 @@
                     android:id="@+id/btn_next"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_next"
                     app:fabSize="auto" />
 

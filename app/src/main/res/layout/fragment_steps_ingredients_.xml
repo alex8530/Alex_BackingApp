@@ -32,9 +32,9 @@
                  tools:text="@string/test" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_steps_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                 android:id="@+id/rv_steps_fragment"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
                  android:padding="5dp">
 
             </android.support.v7.widget.RecyclerView>
