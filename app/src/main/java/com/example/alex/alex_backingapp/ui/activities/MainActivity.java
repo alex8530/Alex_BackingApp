@@ -10,7 +10,7 @@ import com.example.alex.alex_backingapp.ui.fragments.RecipeFragment;
 
  public class MainActivity extends AppCompatActivity implements RecipeFragment.OnRecipeFragmentInteractionListener {
 
-     private static final String TAG = "MainActivity";
+      public static final String RECIPE = "Recipe";
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,7 @@ import com.example.alex.alex_backingapp.ui.fragments.RecipeFragment;
          //go to second activity that contins the fragemt  steps and ingredients
 
          Intent intent= new Intent(this,StepsActivity.class);
-         intent.putExtra("Recipe",recipe);
+         intent.putExtra(RECIPE,recipe);
          startActivity(intent);
 
 

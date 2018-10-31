@@ -17,10 +17,14 @@ import com.example.alex.alex_backingapp.ui.fragments.Steps_ingredients_Fragment;
 import java.util.ArrayList;
 
 public class StepsActivity extends AppCompatActivity
-        implements Steps_ingredients_Fragment.OnSteps_ingredients_FragmentInteractionListener,
-        DetailsStepFragment.OnDetailsStepFragmentInteractionListener {
+        implements Steps_ingredients_Fragment.OnSteps_ingredients_FragmentInteractionListener
+         {
 //in Tablet mode ,this  activity contian two fragment ,(steps and ingredients) ,,, and (deltails steps)
 private static final String TAG = "StepsActivity";
+    private static final String POSITION = "position";
+    private static final String SIZE_OF_LIST = "SizeOfList";
+    private static final String STEPS = "steps";
+
 
     Recipe mRecipe;
     boolean isTablet=false;
@@ -39,8 +43,8 @@ private static final String TAG = "StepsActivity";
 
 
 
-        if (getIntent().hasExtra("Recipe") && getIntent().getParcelableExtra("Recipe")!=null){
-             mRecipe=getIntent().getParcelableExtra("Recipe");
+        if (getIntent().hasExtra(MainActivity.RECIPE) && getIntent().getParcelableExtra(MainActivity.RECIPE)!=null){
+             mRecipe=getIntent().getParcelableExtra(MainActivity.RECIPE);
 
           }else {
             Log.d(TAG, "onCreate: there is Some problem in getting recpie intent");
@@ -72,16 +76,19 @@ private static final String TAG = "StepsActivity";
     @Override
     public void onFragmentInteraction(ArrayList<Step > steps, int position ) {
  //if phone mode , replace current fragment with details fragment
-
+//this code will excute when click on fragement 1
 
         DetailsStepFragment detailsStepFragment= new DetailsStepFragment();
          //we can put data as extra , but i will put it as methods !
 
         //sent the index
         Bundle bundle= new Bundle();
-        bundle.putInt("position",position);
-        bundle.putInt("SizeOfList",steps.size());
-        bundle.putParcelableArrayList("steps",steps );
+        bundle.putInt(DetailsStepFragment.POSITION,position);
+        bundle.putInt(DetailsStepFragment.SIZE_OF_LIST,steps.size());
+        bundle.putParcelableArrayList(DetailsStepFragment.STEPS,steps );
+
+
+
 
         //Note , this is the other way
         detailsStepFragment.setBundleFromActivity(bundle);
@@ -98,11 +105,6 @@ private static final String TAG = "StepsActivity";
                     .replace(R.id.framelayout_steps_ingred, detailsStepFragment)
                     .commit();
         }
-
-    }
-
-    @Override
-    public void setCurrnt(int position) {
 
     }
 

@@ -43,8 +43,15 @@ import static android.view.View.GONE;
 
 public class DetailsStepFragment extends Fragment {
     private static final String TAG = "DetailsStepFragment";
-    private OnDetailsStepFragmentInteractionListener mListener;
+//    private OnDetailsStepFragmentInteractionListener mListener;
     Context mContext;
+
+    public static final String POSITION = "position";
+    public static final String SIZE_OF_LIST = "SizeOfList";
+    public static final String STEPS = "steps";
+    public static final String POSITION_OF_EXOPLAYER = "positionOfExoplayer";
+
+
 
     @BindView(R.id.tv_description)
     TextView tv_description;
@@ -99,37 +106,27 @@ public class DetailsStepFragment extends Fragment {
 
         if(savedInstanceState == null)
         {
-            Log.d(TAG, "onCreateView: savedInstanceState == null");
 
             //this is the first time the the fragment created
             if (bundleFromActivity !=null){
-                position=bundleFromActivity.getInt("position");
-                sizeOfList=bundleFromActivity.getInt("SizeOfList");
-                steps=bundleFromActivity.getParcelableArrayList("steps");
+                position=bundleFromActivity.getInt(POSITION);
+                sizeOfList=bundleFromActivity.getInt(SIZE_OF_LIST);
+                steps=bundleFromActivity.getParcelableArrayList(STEPS);
                 positionOfExoplayer=0;//because this is first time
             }
 
 
         }else {
-            Log.d(TAG, "onCreateView: savedInstanceState =! null");
-            //check if there is reotate and get save value !!
-            position=savedInstanceState.getInt("position");
-            sizeOfList=savedInstanceState.getInt("SizeOfList");
-            steps=savedInstanceState.getParcelableArrayList("steps");
-            positionOfExoplayer=savedInstanceState.getLong("positionOfExoplayer");
+             //check if there is reotate and get save value !!
+            position=savedInstanceState.getInt(POSITION);
+            sizeOfList=savedInstanceState.getInt(SIZE_OF_LIST);
+            steps=savedInstanceState.getParcelableArrayList(STEPS);
+            positionOfExoplayer=savedInstanceState.getLong(POSITION_OF_EXOPLAYER);
 
 
         }
 
         update();
-//        if (mStep!=null){
-//            //when rotate the screen will  crash !!
-//            //use need use view holder
-//
-//
-//        }
-
-
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,11 +166,6 @@ public class DetailsStepFragment extends Fragment {
 
         //remove preivous state of player
         releasePlayer();
-//
-//        //trigger method in the activity to update
-//        if (mListener != null) {
-//            mListener.setCurrnt(position);
-//        }
 
         if (steps.get(position).getVideoURL().isEmpty() && steps.get(position).getThumbnailURL().isEmpty()) {
             mExoPlayerView.setVisibility(GONE);
@@ -197,8 +189,6 @@ public class DetailsStepFragment extends Fragment {
         }
 
 
-//      hideSystemUi();
-
         String description =steps.get(position).getDescription();
         tv_description.setText(description);
         tv_currentStep.setText((position + 1) + "/" + sizeOfList);
@@ -218,8 +208,7 @@ public class DetailsStepFragment extends Fragment {
 
             mExoPlayer.seekTo(positionOfExoplayer);
 
-            Log.d(TAG, "initializePlayer:  mExoPlayer.seekTo "+positionOfExoplayer);
-            mExoPlayerView.setPlayer(mExoPlayer);
+             mExoPlayerView.setPlayer(mExoPlayer);
 
 
 
@@ -236,50 +225,23 @@ public class DetailsStepFragment extends Fragment {
             mExoPlayer.setPlayWhenReady(false);
 
 
-
-
         }
 
     }
 
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnDetailsStepFragmentInteractionListener) {
-            mListener = (OnDetailsStepFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putInt("position",position);
-        outState.putInt("SizeOfList",sizeOfList);
-        outState.putParcelableArrayList("steps",steps);
-        outState.putLong("positionOfExoplayer",mExoPlayer.getCurrentPosition());
+        outState.putInt(POSITION,position);
+        outState.putInt(SIZE_OF_LIST,sizeOfList);
+        outState.putParcelableArrayList(STEPS,steps);
+        outState.putLong(POSITION_OF_EXOPLAYER,mExoPlayer.getCurrentPosition());
 
-        Log.d(TAG, "onSaveInstanceState: positionOfExoplayer : "+mExoPlayer.getCurrentPosition());
 
     }
 
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-
-    public interface OnDetailsStepFragmentInteractionListener {
-
-        void setCurrnt(int position);
-    }
 
     @Override
     public void onDestroy() {
@@ -291,15 +253,14 @@ public class DetailsStepFragment extends Fragment {
     private void releasePlayer() {
 
         if (mExoPlayer!=null){
-//            positionOfExoplayer=mExoPlayer.getCurrentPosition();
-            mExoPlayer.stop();
+             mExoPlayer.stop();
             mExoPlayer.release();
             mExoPlayer = null;
         }
     }
     @SuppressLint("InlinedApi")
     private void hideSystemUi() {
-//        if(tablet)
+//        if(tablet) // todo
 //        {
 //            return;
 //        }

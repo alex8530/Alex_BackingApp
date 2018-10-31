@@ -58,8 +58,9 @@
                 android:freezesText="true"
                 android:gravity="center_horizontal"
                 android:padding="16dp"
+                android:textStyle="bold"
                 android:text="@string/intro"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#000"
                 android:textSize="17sp" />
 
             <RelativeLayout
