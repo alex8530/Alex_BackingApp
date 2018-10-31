@@ -92,10 +92,6 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
 
         }
 
-        // toolbar
-        Toolbar toolbar = root.findViewById(R.id.toolebar_fragment_recipe);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
 
         myItemClickListener=this;
         if (!isTabelet){

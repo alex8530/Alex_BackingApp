@@ -5,16 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="wrap_content"
+     android:layout_height="match_parent"
     tools:context=".ui.fragments.Steps_ingredients_Fragment">
 
-    <include
-        android:id="@+id/toolebar_fragment_steps_ingredients"
-        layout="@layout/appbar_layout" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
         <LinearLayout
@@ -26,16 +24,18 @@
             <TextView
                 android:id="@+id/tv_ingredients_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="5dp"
-                tools:text="@string/test" />
+
+                android:textSize="18sp"
+                 android:textColor="@color/colorPrimary"
+                 tools:text="@string/test" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_steps_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:padding="5dp">
+                android:layout_height="match_parent"
+                 android:padding="5dp">
 
             </android.support.v7.widget.RecyclerView>
 

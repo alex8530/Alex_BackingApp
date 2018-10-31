@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.alex.alex_backingapp.R;
@@ -95,17 +96,10 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
         myItemClickListener=this;
 
 
-        // toolbar
-        Toolbar toolbar = root.findViewById(R.id.toolebar_fragment_steps_ingredients);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()). getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         StringBuilder s =new StringBuilder();
-//todo
-        if (mRecipe==null) {
-            return null;
-        }
+
         for (Ingredients ingredients : mRecipe.getIngredients()){
 
             s.append( ingredients.getIngredient()+">>>"+ingredients.getQuantity() +" "+ingredients.getMeasure() + "\n");
@@ -127,6 +121,7 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
         mRecyleViewStepFragment.setAdapter(adapter);
         mRecyleViewStepFragment.scheduleLayoutAnimation();
         adapter.notifyDataSetChanged();
+
 
         return root;
     }
@@ -159,15 +154,6 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
     public interface OnSteps_ingredients_FragmentInteractionListener {
          void onFragmentInteraction(ArrayList<Step> steps, int position );
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(getActivity());
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
 }

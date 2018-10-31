@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+
+
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/framelayout_steps_ingred"
-    tools:context=".ui.activities.StepsActivity">
+     tools:context=".ui.activities.StepsActivity">
 
-</FrameLayout>
+
+    <include
+        android:id="@+id/toolebar_steps"
+        layout="@layout/appbar_layout" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/framelayout_steps_ingred">
+
+
+    </FrameLayout>
+</LinearLayout>
