@@ -1,4 +1,4 @@
-# Alex_BackingApp
+# Alex_BackingApp #udacity
 
 # Project Overview
 You will productionize an app, taking it from a functional state to a production-ready state. This will involve finding and handling error cases, adding accessibility features, allowing for localization, adding a widget, and adding a library.
@@ -28,5 +28,22 @@ One of the skills you will demonstrate in this project is how to handle unexpect
 
 
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
- will add pics soon
+
+ 
+
+[![N|Solid](https://b.top4top.net/p_1034htp3a2.png)](https://nodesource.com/products/nsolid)
+ 
+ 
+[![N|Solid](https://c.top4top.net/p_10341ormu3.png)](https://nodesource.com/products/nsolid)
+ 
+ 
+[![N|Solid](https://d.top4top.net/p_1034y1ntn4.png)](https://nodesource.com/products/nsolid)
+ 
+ 
+[![N|Solid](https://e.top4top.net/p_10340typ45.png)](https://nodesource.com/products/nsolid)
+ 
+[![N|Solid](https://f.top4top.net/p_10346pgj06.png)](https://nodesource.com/products/nsolid)
+ 
+[![N|Solid](https://a.top4top.net/p_10343euxu7.png)](https://nodesource.com/products/nsolid)
+[![N|Solid](https://f.top4top.net/p_1034iuzrs1.png)](https://nodesource.com/products/nsolid)
+ 
