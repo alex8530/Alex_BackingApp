@@ -34,12 +34,6 @@ private static final String TAG = "StepsActivity";
         setContentView(R.layout.activity_steps);
 
 
-        // toolbar
-        Toolbar toolbar = findViewById(R.id.toolebar_steps);
-         setSupportActionBar(toolbar);
-         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
 
 
@@ -55,6 +49,16 @@ private static final String TAG = "StepsActivity";
         if (viewForCheck!=null){
             isTablet=true;
             Log.d(TAG, "onCreate: isTablet=true; ");
+        }
+
+        //Note , there is no toolbar on tablet mode so you must check that to avoid null !!
+        if (!isTablet){
+            // toolbar
+            Toolbar toolbar = findViewById(R.id.toolebar_steps);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         }
 
 

@@ -46,8 +46,7 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
 
     private OnRecipeFragmentInteractionListener mListener;
     ApiInterface mApiInterface;
-    private static final String TAG = "RecipeFragmentttttt";
-    Context mContext;
+     Context mContext;
 
     boolean isTabelet=false;
 
@@ -76,33 +75,26 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
        View root =  inflater.inflate(R.layout.fragment_recipe, container, false);
          mContext=getContext();
         ButterKnife.bind(this,root);
+        myItemClickListener=this;
 
 
 
         if (this.getTag().equals("tablet")){
-
-
              //yes is  tablet
             isTabelet=true;
-            Log.d(TAG, "onCreateView: isTabelet=true; ");
-        }else {
+         }else {
             //phone
             isTabelet=false;
-            Log.d(TAG, "onCreateView: isTabelet=false; ");
 
         }
 
-
-        myItemClickListener=this;
         if (!isTabelet){
 //            phone
             mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-            Log.d(TAG, "onCreateView:phone ");
 
         }else {
 //            tablet
             mRecyclerView.setLayoutManager(new GridLayoutManager(mContext,3));
-            Log.d(TAG, "onCreateView:tablet ");
 
         }
         mRecyclerView.setHasFixedSize(true);
@@ -130,8 +122,6 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
                  mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.scheduleLayoutAnimation();
                 mAdapter.notifyDataSetChanged();
-
-                // todo add the list to view model for avoid the recreate !!!
 
 
             }
@@ -169,6 +159,7 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
     public void onClickItemObject(int position) {
 
         //this is well trigger when click on item by adtapter
+        //will send posotion to activty and let it to add item to fragment
         mListener.onFragmentInteraction(mRecipesList.get(position));
 
          //sent the new Ingredients to update the last one and put it  to widget

@@ -15,8 +15,9 @@
             android:id="@+id/tv_step_item_shortDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="asddasdasd"
-            android:textSize="22sp"
+             android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#000"
             android:gravity="center"
             android:padding="20dp"/>
 

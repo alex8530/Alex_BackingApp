@@ -40,8 +40,7 @@ import butterknife.ButterKnife;
  */
 public class Steps_ingredients_Fragment extends Fragment implements MyItemClickListener{
 
-    private static final String TAG = "Steps_ingredients_Fragm";
-    Context mContext;
+     Context mContext;
     @BindView(R.id.rv_steps_fragment)
     RecyclerView mRecyleViewStepFragment;
     @BindView(R.id.tv_ingredients_fragment)
@@ -49,8 +48,7 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
 
     MyItemClickListener myItemClickListener;
 
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+     private static final String ARG_PARAM1 = "param1";
     private Recipe mRecipe;
 
     // TODO: Rename and change types of parameters
@@ -148,9 +146,7 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
         //this is for handel the click from adapter
 
         mListener.onFragmentInteraction(mRecipe.getSteps() ,position );
-
     }
-
     public interface OnSteps_ingredients_FragmentInteractionListener {
          void onFragmentInteraction(ArrayList<Step> steps, int position );
     }
