@@ -25,25 +25,25 @@ The JSON file contains the recipes' instructions, ingredients, videos and images
 One of the skills you will demonstrate in this project is how to handle unexpected input in your data -- professional developers often cannot expect polished JSON data when building an app.
 
 
-
-
-
-
- 
-
 [![N|Solid](https://b.top4top.net/p_1034htp3a2.png)](https://nodesource.com/products/nsolid)
- 
+  ___________________________
  
 [![N|Solid](https://c.top4top.net/p_10341ormu3.png)](https://nodesource.com/products/nsolid)
- 
+  __________________________
  
 [![N|Solid](https://d.top4top.net/p_1034y1ntn4.png)](https://nodesource.com/products/nsolid)
- 
- 
+  __________________________ 
 [![N|Solid](https://e.top4top.net/p_10340typ45.png)](https://nodesource.com/products/nsolid)
- 
+
+  __________________________
 [![N|Solid](https://f.top4top.net/p_10346pgj06.png)](https://nodesource.com/products/nsolid)
- 
+
+
+    __________________________
+    
 [![N|Solid](https://a.top4top.net/p_10343euxu7.png)](https://nodesource.com/products/nsolid)
+
+   __________________________
+ 
 [![N|Solid](https://f.top4top.net/p_1034iuzrs1.png)](https://nodesource.com/products/nsolid)
  
