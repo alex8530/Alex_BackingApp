@@ -16,8 +16,10 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 
 import com.example.alex.alex_backingapp.R;
+import com.example.alex.alex_backingapp.StepsService;
 import com.example.alex.alex_backingapp.adapter.MainAdapter;
 import com.example.alex.alex_backingapp.listener.MyItemClickListener;
+import com.example.alex.alex_backingapp.model.Ingredients;
 import com.example.alex.alex_backingapp.model.Recipe;
 import com.example.alex.alex_backingapp.rest.ApiClient;
 import com.example.alex.alex_backingapp.rest.ApiInterface;
@@ -171,6 +173,13 @@ public class RecipeFragment extends Fragment implements MyItemClickListener {
         //this is well trigger when click on item by adtapter
         mListener.onFragmentInteraction(mRecipesList.get(position));
 
+         //sent the new Ingredients to update the last one and put it  to widget
+        updateWidget(mRecipesList.get(position).getIngredients());
+
+    }
+
+    private void updateWidget(ArrayList<Ingredients> ingredients) {
+         StepsService.startActionUpdateWidgets(getActivity(),ingredients);
     }
 
 

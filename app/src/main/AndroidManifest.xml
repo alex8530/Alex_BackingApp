@@ -19,7 +19,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.StepsActivity"></activity>
+        <activity android:name=".ui.activities.StepsActivity" />
+
+        <receiver android:name=".StepsAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/steps_app_widget_info" />
+        </receiver>
+
+        <service android:name=".StepsService" />
+
     </application>
 
 </manifest>

@@ -78,7 +78,7 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments().getParcelable(ARG_PARAM1) != null) {
             mRecipe = getArguments().getParcelable(ARG_PARAM1);        }
     }
 
@@ -91,7 +91,10 @@ public class Steps_ingredients_Fragment extends Fragment implements MyItemClickL
         myItemClickListener=this;
 
         StringBuilder s =new StringBuilder();
-
+//todo
+        if (mRecipe==null) {
+            return null;
+        }
         for (Ingredients ingredients : mRecipe.getIngredients()){
 
             s.append( ingredients.getIngredient()+">>>"+ingredients.getQuantity() +" "+ingredients.getMeasure() + "\n");
